@@ -5,15 +5,18 @@ module.exports = {
   solidity: "0.8.17",
 };
 
-require("@nomiclabs/hardhat-waffle");
+require("@nomicfoundation/hardhat-chai-matchers");
+require("@nomiclabs/hardhat-ethers");
+
 require('dotenv').config();
 
+
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.17",
   networks: {
     goerli: {
       url: process.env.ALCHEMY_GOERLI_HTTPS,
-      accounts: [process.env.ACCOUNT_PRIVATE_KEY],
+      accounts: [process.env.ACCOUNT_KEY],
     }
   }
 };
