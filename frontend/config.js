@@ -1,0 +1,1 @@
+export const TwitterContractAddress = process.env.DEPLOY_ADDRESS

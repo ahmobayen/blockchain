@@ -11,3 +11,14 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+# Step By Step guid
+
+## BackEnd dependency installation:
+>[settings]\
+npm install --save-dev @nomicfoundation/hardhat-chai-matchers\
+npm install --save-dev @nomicfoundation/hardhat-toolbox\
+npm install ethers hardhat chai @nomiclabs/hardhat-ethers @openzeppelin/contracts dotenv\
+
+## FrontEnd dependency installation:
+
