@@ -22,7 +22,7 @@ function App() {
       let chainId = await ethereum.request({ method: 'eth_chainId'})
       console.log('Connected to chain:' + chainId)
 
-      const goerliChainId = process.env.DEPLOY_ADDRESS;
+      const goerliChainId = '0x5'
 
       if (chainId !== goerliChainId) {
         alert('You are not connected to the Goerli Testnet!')
@@ -44,7 +44,7 @@ function App() {
     let chainId = await ethereum.request({ method: 'eth_chainId' })
     console.log('Connected to chain:' + chainId)
 
-    const goerliChainId = process.env.DEPLOY_ADDRESS;
+    const goerliChainId = '0x5'
 
     if (chainId !== goerliChainId) {
       setCorrectNetwork(false)
