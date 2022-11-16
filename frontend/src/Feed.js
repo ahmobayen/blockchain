@@ -3,7 +3,6 @@ import TweetBox from "./TweetBox";
 import Post from "./Post";
 import "./Feed.css";
 import FlipMove from "react-flip-move";
-import axios from 'axios';
 import { TwitterContractAddress } from './config.js';
 import {ethers} from 'ethers';
 import Twitter from './utils/TwitterContract.json'

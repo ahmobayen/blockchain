@@ -16,9 +16,12 @@ npx hardhat run scripts/deploy.js
 
 ## BackEnd dependency installation:
 >[settings]\
-npm install --save-dev @nomicfoundation/hardhat-chai-matchers\
-npm install --save-dev @nomicfoundation/hardhat-toolbox\
-npm install ethers hardhat chai @nomiclabs/hardhat-ethers @openzeppelin/contracts dotenv\
+cd ./backend
+npm install
 
 ## FrontEnd dependency installation:
+required npm version 16.14.0
 
+>[settings]\
+cd ./frontend
+npm install

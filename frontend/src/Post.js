@@ -33,10 +33,6 @@ const Post = forwardRef(
             </div>
           </div>
           <div className="post__footer">
-            <ChatBubbleOutlineIcon fontSize="small" />
-            <RepeatIcon fontSize="small" />
-            <FavoriteBorderIcon fontSize="small" />
-            <PublishIcon fontSize="small" />
             {personal ? (
               <DeleteIcon fontSize="small" onClick={onClick}/>
             ) : ("")}
