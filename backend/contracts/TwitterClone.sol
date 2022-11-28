@@ -7,35 +7,40 @@ pragma solidity 0.8.17;
  */
 contract TwitterContract {
 
-    event AddTweet(address recipient, uint tweetId);
-    event DeleteTweet(uint tweetId, bool isDeleted);
+    event eventAddTweet(address recipient, uint tweet_id);
+    event eventDeleteTweet(uint tweet_id);
+    event eventUpdateTweet(uint tweet_id, uint update_version, string text_update);
 
     struct Tweet {
         uint id;
         address username;
-        string tweetText;
-        bool isDeleted;
+        string tweet_text;
+        uint update_version;
+        bool is_deleted;
     }
 
     Tweet[] private tweets;
 
-    // Mapping of Tweet id to the wallet address of the user
-    mapping(uint256 => address) tweetToOwner;
+    // Mapping tweet to the wallet address of the user
+    mapping(uint256 => address) map_tweet_to_owner;
 
     // Method to be called by our frontend when trying to add a new Tweet
-    function addTweet(string memory tweetText, bool isDeleted) external {
-        uint tweetId = tweets.length;
-        tweets.push(Tweet(tweetId, msg.sender, tweetText, isDeleted));
-        tweetToOwner[tweetId] = msg.sender;
-        emit AddTweet(msg.sender, tweetId);
+    function addTweet(string memory tweet_text) external {
+        uint tweet_id = tweets.length;
+        bool is_deleted = false;
+        uint update_version = 1;
+
+        tweets.push(Tweet(tweet_id, msg.sender, tweet_text, update_version , is_deleted));
+        map_tweet_to_owner[tweet_id] = msg.sender;
+        emit eventAddTweet(msg.sender, tweet_id);
     }
 
-    // Method to get all the Tweets
+    // Method to fetch all Tweets
     function getAllTweets() external view returns (Tweet[] memory) {
         Tweet[] memory temporary = new Tweet[](tweets.length);
         uint counter = 0;
         for(uint i=0; i<tweets.length; i++) {
-            if(tweets[i].isDeleted == false) {
+            if(tweets[i].is_deleted == false) {
                 temporary[counter] = tweets[i];
                 counter++;
             }
@@ -48,12 +53,12 @@ contract TwitterContract {
         return result;
     }
 
-    // Method to get only your Tweets
+    // Method to fetch owners Tweets
     function getMyTweets() external view returns (Tweet[] memory) {
         Tweet[] memory temporary = new Tweet[](tweets.length);
         uint counter = 0;
         for(uint i=0; i<tweets.length; i++) {
-            if(tweetToOwner[i] == msg.sender && tweets[i].isDeleted == false) {
+            if(map_tweet_to_owner[i] == msg.sender && tweets[i].is_deleted == false) {
                 temporary[counter] = tweets[i];
                 counter++;
             }
@@ -67,10 +72,20 @@ contract TwitterContract {
     }
 
     // Method to Delete a Tweet
-    function deleteTweet(uint tweetId, bool isDeleted) external {
-        if(tweetToOwner[tweetId] == msg.sender) {
-            tweets[tweetId].isDeleted = isDeleted;
-            emit DeleteTweet(tweetId, isDeleted);
+    function deleteTweet(uint tweetId) external {
+        bool is_deleted = true;
+
+        if(map_tweet_to_owner[tweetId] == msg.sender) {
+            tweets[tweetId].is_deleted = is_deleted;
+            emit eventDeleteTweet(tweetId);
+        }
+    }
+
+    // Method to update a Tweet    
+    function updateTweet(uint tweet_id, string memory update_text) external {
+        if(map_tweet_to_owner[tweet_id] == msg.sender) {
+            uint update_version = tweets[tweet_id].update_version + 1;
+            emit eventUpdateTweet(tweet_id, update_version , update_text);
         }
     }
 
