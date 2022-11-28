@@ -26,7 +26,7 @@ required npm version 16.14.0
 cd ./frontend
 npm install
 
-#Features
+# Features
 - View All Tweets
 - Delete Tweet By User
 - Submit new Tweet By user
