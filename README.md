@@ -15,16 +15,17 @@ npx hardhat run scripts/deploy.js
 # Step By Step guid
 
 ## BackEnd dependency installation:
->[settings]\
+```shell
 cd ./backend
 npm install
-
+```
 ## FrontEnd dependency installation:
 required npm version 16.14.0
 
->[settings]\
+```shell
 cd ./frontend
 npm install
+```
 
 # Features
 - View All Tweets
