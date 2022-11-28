@@ -1,3 +1,7 @@
+:root{
+  --twitter-background: rgba(96, 106, 116, 0.089);
+  --twitter-color: rgb(0, 172, 238);
+}
 .tweetBox {
   padding-bottom: 10px;
   border-bottom: 8px solid var(--twitter-background);
@@ -18,7 +22,8 @@
   flex: 1;
   margin-left: 20px;
   font-size: 20px;
-  border: none;
+  border: ridge;
+  border-radius: 10px;
 }
 
 .tweetBox__imageInput {
@@ -29,7 +34,7 @@
 .tweetBox__tweetButton {
   background-color: var(--twitter-color) !important;
   border: none !important;
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
   font-weight: 900 !important;
   text-transform: inherit !important;
   border-radius: 30px !important;
