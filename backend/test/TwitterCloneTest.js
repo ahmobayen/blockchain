@@ -91,11 +91,10 @@ describe("Twitter Contract", function() {
       // event eventUpdateTweet(uint tweet_id, uint update_version, string text_update)
       const TWEET_ID = 1;
       const text_update = "This is an update";
-      const update_version = 2;
 
       await expect(
         twitter.connect(addr1).updateTweet(TWEET_ID, text_update)
-        ).to.emit(twitter, 'eventUpdateTweet').withArgs(TWEET_ID, update_version, text_update);
+        ).to.emit(twitter, 'eventUpdateTweet').withArgs(TWEET_ID, text_update);
     })
   })
 });

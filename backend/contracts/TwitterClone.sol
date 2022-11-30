@@ -9,7 +9,7 @@ contract TwitterContract {
 
     event eventAddTweet(address recipient, uint tweet_id);
     event eventDeleteTweet(uint tweet_id);
-    event eventUpdateTweet(uint tweet_id, uint update_version, string text_update);
+    event eventUpdateTweet(uint tweet_id, string text_update);
 
     struct Tweet {
         uint id;
@@ -25,7 +25,7 @@ contract TwitterContract {
     mapping(uint256 => address) map_tweet_to_owner;
 
     // Method to be called by our frontend when trying to add a new Tweet
-    function addTweet(string memory tweet_text) external {
+    function addTweet(string memory tweet_text) public {
         uint tweet_id = tweets.length;
         bool is_deleted = false;
         uint update_version = 1;
@@ -72,21 +72,21 @@ contract TwitterContract {
     }
 
     // Method to Delete a Tweet
-    function deleteTweet(uint tweetId) external {
+    function deleteTweet(uint tweet_id) public {
         bool is_deleted = true;
 
-        if(map_tweet_to_owner[tweetId] == msg.sender) {
-            tweets[tweetId].is_deleted = is_deleted;
-            emit eventDeleteTweet(tweetId);
+        if(map_tweet_to_owner[tweet_id] == msg.sender) {
+            tweets[tweet_id].is_deleted = is_deleted;
+            emit eventDeleteTweet(tweet_id);
         }
     }
 
     // Method to update a Tweet    
     function updateTweet(uint tweet_id, string memory update_text) external {
         if(map_tweet_to_owner[tweet_id] == msg.sender) {
-            uint update_version = tweets[tweet_id].update_version + 1;
-            emit eventUpdateTweet(tweet_id, update_version , update_text);
+            deleteTweet(tweet_id);
+            addTweet(update_text);
+            emit eventUpdateTweet(tweet_id, update_text);
         }
     }
-
 }
