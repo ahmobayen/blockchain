@@ -1,4 +1,3 @@
-# Step By Step guid
 
 # Features
 - View All Tweets
@@ -6,16 +5,13 @@
 - Update Tweet By User
 - Submit new Tweet By user
 
-
 ## Development Steps
-
 - Development of a CRUD API in Solidity
 - Unit Test for CRUD operations
 - Deployment to Goerli
-- Development of a front-end to interact with the smart contracts
+- Development of a front-end using Js/React andhave interaction with the smart contracts
 
 ## Project Requirment/Setup
-
 ### BackEnd dependency installation:
 ```shell
 cd ./backend
