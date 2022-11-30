@@ -94,6 +94,33 @@ function Feed({personal}) {
     }
   }
 
+  const updateTweet = key => async() => {
+    console.log(key);
+
+    // Now we got the key, let's delete our tweet
+    try {
+      const {ethereum} = window
+
+      if(ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const TwitterContract = new ethers.Contract(
+          TwitterContractAddress,
+          Twitter.abi,
+          signer
+        );
+
+        let updateTweetTx = await TwitterContract.updateTweet(key);
+        let allTweets = await TwitterContract.getAllTweets();
+        setPosts(getUpdatedTweets(allTweets, ethereum.selectedAddress));
+      } else {
+        console.log("Ethereum object doesn't exist");
+      }
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="feed">
       <div className="feed__header">
@@ -107,9 +134,10 @@ function Feed({personal}) {
           <Post
             key={post.id}
             displayName={post.username}
-            text={post.tweetText}
+            text={post.tweet_text}
             personal={post.personal}
-            onClick={deleteTweet(post.id)}
+            updateTweetOnClick={updateTweet(post)}
+            deleteTweetOnClick={deleteTweet(post.id)}
           />
         ))}
       </FlipMove>
