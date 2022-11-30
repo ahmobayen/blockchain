@@ -9,13 +9,12 @@ contract TwitterContract {
 
     event eventAddTweet(address recipient, uint tweet_id);
     event eventDeleteTweet(uint tweet_id);
-    event eventUpdateTweet(uint tweet_id, string text_update);
+    event eventUpdateTweet(uint tweet_id);
 
     struct Tweet {
         uint id;
         address username;
         string tweet_text;
-        uint update_version;
         bool is_deleted;
     }
 
@@ -28,9 +27,8 @@ contract TwitterContract {
     function addTweet(string memory tweet_text) public {
         uint tweet_id = tweets.length;
         bool is_deleted = false;
-        uint update_version = 1;
 
-        tweets.push(Tweet(tweet_id, msg.sender, tweet_text, update_version , is_deleted));
+        tweets.push(Tweet(tweet_id, msg.sender, tweet_text, is_deleted));
         map_tweet_to_owner[tweet_id] = msg.sender;
         emit eventAddTweet(msg.sender, tweet_id);
     }
@@ -84,9 +82,8 @@ contract TwitterContract {
     // Method to update a Tweet    
     function updateTweet(uint tweet_id, string memory update_text) external {
         if(map_tweet_to_owner[tweet_id] == msg.sender) {
-            deleteTweet(tweet_id);
-            addTweet(update_text);
-            emit eventUpdateTweet(tweet_id, update_text);
+            tweets[tweet_id].tweet_text = update_text;
+            emit eventUpdateTweet(tweet_id);
         }
     }
 }

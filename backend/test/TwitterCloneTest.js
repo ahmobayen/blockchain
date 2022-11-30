@@ -94,7 +94,7 @@ describe("Twitter Contract", function() {
 
       await expect(
         twitter.connect(addr1).updateTweet(TWEET_ID, text_update)
-        ).to.emit(twitter, 'eventUpdateTweet').withArgs(TWEET_ID, text_update);
+        ).to.emit(twitter, 'eventUpdateTweet').withArgs(TWEET_ID);
     })
   })
 });

@@ -1,1 +1,1 @@
-export const TwitterContractAddress = "0x1B0074dd89EA8A79E92553f0de558a489856A339"
+export const TwitterContractAddress = "0x3e2631656d1916b05e0907D5AE266b05A1a98d40"

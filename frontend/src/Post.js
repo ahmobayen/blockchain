@@ -2,12 +2,9 @@ import React, { forwardRef } from "react";
 import "./Post.css";
 import Avatar from 'avataaars';
 import { generateRandomAvatarOptions } from './avatar';
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
-import RepeatIcon from "@material-ui/icons/Repeat";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import PublishIcon from "@material-ui/icons/Publish";
+
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const Post = forwardRef(
   ({ displayName, text, personal, onClick }, ref) => {
@@ -33,9 +30,13 @@ const Post = forwardRef(
             </div>
           </div>
           <div className="post__footer">
+          {personal ? (
+              <EditIcon fontSize="small" onClick={onClick}/>
+            ) : ("")}
             {personal ? (
               <DeleteIcon fontSize="small" onClick={onClick}/>
             ) : ("")}
+            
           </div>
         </div>
       </div>

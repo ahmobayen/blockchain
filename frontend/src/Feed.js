@@ -18,8 +18,8 @@ function Feed({personal}) {
       if(allTweets[i].username.toLowerCase() == address.toLowerCase()) {
         let tweet = {
           'id': allTweets[i].id,
-          'tweetText': allTweets[i].tweetText,
-          'isDeleted': allTweets[i].isDeleted,
+          'tweet_text': allTweets[i].tweet_text,
+          'is_deleted': allTweets[i].is_deleted,
           'username': allTweets[i].username,
           'personal': true
         };
@@ -27,8 +27,8 @@ function Feed({personal}) {
       } else {
         let tweet = {
           'id': allTweets[i].id,
-          'tweetText': allTweets[i].tweetText,
-          'isDeleted': allTweets[i].isDeleted,
+          'tweet_text': allTweets[i].tweet_text,
+          'is_deleted': allTweets[i].is_deleted,
           'username': allTweets[i].username,
           'personal': false
         };
@@ -62,6 +62,7 @@ function Feed({personal}) {
   }
 
   useEffect(() => {
+    
     getAllTweets();
   }, []);
 
@@ -81,7 +82,7 @@ function Feed({personal}) {
           signer
         );
 
-        let deleteTweetTx = await TwitterContract.deleteTweet(key, true);
+        let deleteTweetTx = await TwitterContract.deleteTweet(key);
         let allTweets = await TwitterContract.getAllTweets();
         setPosts(getUpdatedTweets(allTweets, ethereum.selectedAddress));
       } else {
