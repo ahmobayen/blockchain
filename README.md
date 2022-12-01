@@ -9,7 +9,7 @@
 - Development of a CRUD API in Solidity
 - Unit Test for CRUD operations
 - Deployment to Goerli
-- Development of a front-end using Js/React andhave interaction with the smart contracts
+- Development of a front-end using Js/React and have interaction with the smart contracts
 
 ## Project Requirment/Setup
 ### BackEnd dependency installation:
@@ -35,3 +35,20 @@ ALCHEMY_GOERLI_WEBSOCKET = "wss://eth-goerli.g.alchemy.com/v2/{Your Key}"
 
 ACCOUNT_KEY = "{your Key}"
 ```
+
+# Deployment 
+## Backend
+in backend directory use command below to deploy:
+```
+npx hardhat run scripts/deploy.js --network goerli
+```
+after that it must give a contract key which must be saved. In order to connect your front to back must go to SRC/config.js and replace the existing code.
+
+## Frontend
+in frontend directory use command below to deploy and execute server:
+```
+npm start
+```
+after that it must launch defualt browser and load localhost:3000 
+ask for metamask info and connect to it.
+if everything goes fine you must be able to tweet.
